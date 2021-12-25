@@ -32,6 +32,12 @@ jobs:
       -
         name: what's going on
         run: ls
+      -
+        name: Hmmm
+        run: ls .
+      -
+        name: what
+        run: ls ./public_html
       - 
         name: Build and push
         uses: docker/build-push-action@v2

@@ -291,7 +291,7 @@ PlaneObject.prototype.updateData = function(receiver_timestamp, data) {
 	// Update all of our data
 	this.messages	= data.messages;
         this.rssi       = data.rssi;
-	this.last_message_time = receiver_timestamp - data.seen;
+	this.last_message_time = receiver_timestamp;
         
         if (typeof data.altitude !== "undefined")
 		this.altitude	= data.altitude;
@@ -303,8 +303,8 @@ PlaneObject.prototype.updateData = function(receiver_timestamp, data) {
                 this.track	= data.track;
         if (typeof data.lat !== "undefined") {
                 this.position   = new google.maps.LatLng(data.lat, data.lon);
-                this.last_position_time = receiver_timestamp - data.seen_pos;
-
+                this.last_position_time = receiver_timestamp;
+                this.seen = 0;
                 if (SitePosition !== null) {
                         this.sitedist = google.maps.geometry.spherical.computeDistanceBetween (SitePosition, this.position);
                 }

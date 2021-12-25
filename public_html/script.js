@@ -83,7 +83,7 @@ function handleFileSelect(evt) {
 function processReceiverUpdate(data) {
 	// Loop through all the planes in the data packet
         var now = data.now;
-        var acs = data.aircraft;
+        var acs = data.planes;
 
         // Detect stats reset
         if (MessageCountHistory.length > 0 && MessageCountHistory[MessageCountHistory.length-1].messages > data.messages) {
@@ -92,16 +92,19 @@ function processReceiverUpdate(data) {
         }
 
         // Note the message count in the history
-        MessageCountHistory.push({ 'time' : now, 'messages' : data.messages});
+
+        MessageCountHistory.push({ 'time' : now, 'messages' : 1});
         // .. and clean up any old values
         if ((now - MessageCountHistory[0].time) > 30)
                 MessageCountHistory.shift();
 
 	for (var j=0; j < acs.length; j++) {
                 var ac = acs[j];
-                var hex = ac.hex;
+                ac.seen = now;
+                var hex = ac.hexValue;
                 var plane = null;
-
+                ac.seen_pos = now;
+                
 		// Do we already have this plane object in Planes?
 		// If not make it.
 
@@ -132,8 +135,9 @@ function processReceiverUpdate(data) {
                         
                         Planes[hex] = plane;
                         PlanesOrdered.push(plane);
-		}
 
+		}
+                
 		// Call the function update
 		plane.updateData(now, ac);
 	}
@@ -145,12 +149,13 @@ function fetchData() {
                 return;
         }
 
-	FetchPending = $.ajax({ url: 'data/aircraft.json',
+	FetchPending = $.ajax({ url: 'https://api.centurionx.net/plane/frame',
                                 timeout: 5000,
                                 cache: false,
                                 dataType: 'json' });
         FetchPending.done(function(data) {
                 var now = data.now;
+                
 
                 processReceiverUpdate(data);
 

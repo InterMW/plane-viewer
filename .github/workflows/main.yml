@@ -29,6 +29,9 @@ jobs:
           registry: docker.centurionx.net
           username: ${{secrets.DOCKER_USERNAME}}
           password: ${{secrets.DOCKER_PASSWORD}}
+      -
+        name: what's going on
+        run: ls
       - 
         name: Build and push
         uses: docker/build-push-action@v2

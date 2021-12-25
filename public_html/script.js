@@ -275,6 +275,8 @@ function initialize() {
 var CurrentHistoryFetch = null;
 var PositionHistoryBuffer = []
 function start_load_history() {
+        end_load_history();
+        return;
         if (PositionHistorySize > 0) {
                 $("#loader_progress").attr('max',PositionHistorySize);
                 console.log("Starting to load history (" + PositionHistorySize + " items)");

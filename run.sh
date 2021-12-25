@@ -1,1 +1,0 @@
-./dump1090 --net-only --interactive  --lat 42.001 --lon -87.6595755 --phase-enhance  --interactive-rows 30 --max-range 600 --dcfilter --quiet --net-bind-address 0.0.0.0

@@ -8,7 +8,7 @@
 // -- Title Settings --------------------------------------
 // Show number of aircraft and/or messages per second in the page title
 PlaneCountInTitle = true;
-MessageRateInTitle = true;
+MessageRateInTitle = false;
 
 // -- Output Settings -------------------------------------
 // Show metric values
@@ -26,18 +26,18 @@ ShowOtherUnits = true;
 // degrees.
 
 // Default center of the map.
-DefaultCenterLat = 52.085624;
-DefaultCenterLon = 5.0890591;
+DefaultCenterLat = 39.50;
+DefaultCenterLon = -90.35;
 // The google maps zoom level, 0 - 16, lower is further out
 DefaultZoomLvl   = 7;
 
 // Center marker. If dump1090 provides a receiver location,
 // that location is used and these settings are ignored.
 
-SiteShow    = true;            // true to show a center marker
-SiteLat     = 52.085624;       // position of the marker
-SiteLon     = 5.0890591;
-SiteName    = "My Radar Site"; // tooltip of the marker
+SiteShow    = false;            // true to show a center marker
+SiteLat     = 39.50;       // position of the marker
+SiteLon     = -90.35;
+SiteName    = "Geo Center"; // tooltip of the marker
 
 // User Map (KML File)
 // Enables KML overlay on map, UserMap must have a value below when "true"
@@ -47,7 +47,7 @@ UserMap     = "https://github.com/tedsluis/dump1090/raw/master/exampledata/radar
 
 // User heatmap (csv File)
 // Enables Heatmap on map
-HeatmapShow = true;            //true to show Heatmap
+HeatmapShow = false;            //true to show Heatmap
 // heatmap to show:
 UserHeatMap = "heatmapdata.csv"// Must be located in /usr/share/dump1090-mutability/html
 // Enables file selector to upload a local heatmap.
@@ -157,7 +157,7 @@ SiteCirclesDistances = new Array(100,150,200);
 ShowClocks = true;
 
 // Controls page title, righthand pane when nothing is selected
-PageName = "DUMP1090";
+PageName = "Inter Plane Viewer";
 
 // Show country flags by ICAO addresses?
 ShowFlags = true;

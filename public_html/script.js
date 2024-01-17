@@ -149,7 +149,7 @@ function fetchData() {
                 return;
         }
 
-	FetchPending = $.ajax({ url: 'https://api.centurionx.net/plane/frame',
+	FetchPending = $.ajax({ url: 'https://api.centurionx.net/wrangler/frame',
                                 timeout: 5000,
                                 cache: false,
                                 dataType: 'json' });

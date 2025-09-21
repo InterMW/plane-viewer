@@ -41,12 +41,13 @@ jobs:
   deploy:
     needs: build
     runs-on: self-hosted
+    env:
+     TAG: plane-viewer
     steps:
-      - 
-        name: Run SSH command
-        uses: garygrossgarten/github-action-ssh@v0.5.0
-        with:
-          command: docker pull ${{secrets.DOCKER_HOST}}/plane-viewer; docker stop interplane-viewer; docker rm interplane-viewer; sudo docker run  -p 8001:80 --log-driver none --name=interplane-viewer --restart=unless-stopped -d ${{secrets.DOCKER_HOST}}/plane-viewer
-          host: ${{secrets.HOST}}
-          user: ${{secrets.CENTURION_USERNAME}}
-          password: ${{secrets.CENTURION_PASSWORD}}
+     - name: SSH Command
+       uses: nekiro/ssh-job@v1.0.5
+       with:
+        command:  docker pull ${{secrets.DOCKER_HOST}}/${{env.TAG}}; docker stop ${{env.TAG}}; docker rm ${{env.TAG}}; docker run --name ${{env.TAG}} --restart=unless-stopped --net inter_network -m=500m --dns=10.0.0.33 -d ${{secrets.DOCKER_HOST}}/${{env.TAG}}; 
+        host: ${{secrets.HOST}}
+        user: ${{secrets.CENTURION_USERNAME}}
+        password: ${{secrets.CENTURION_PASSWORD}}

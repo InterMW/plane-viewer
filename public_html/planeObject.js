@@ -74,21 +74,18 @@ PlaneObject.prototype.updateTrack = function(estimate_time) {
         this.is_history_requesting = true;
         // Brand new track
         var plane = this;
-        //console.log(this.icao + " new track");
         //
         var url = "https://api.centurionx.net/indexer/history?hexValue=";
         fetch(url+ this.icao)
             .then(function(response) {
                 return response.json();
             }).then(async function(data) {
-                console.log(data);
                 var results = [];
                 var pointer = data.previousLink;
                 try {
                     var done = false
                     do {
                         var urr = "https://api.centurionx.net/indexer/history?hexValue=" + plane.icao+"&time="+pointer;
-                        console.log(urr)
                         const response = await fetch(urr, { cache: 'no-cache' });
                         if (response.ok) {
                             const jsonResponse = await response.json()
@@ -97,7 +94,6 @@ PlaneObject.prototype.updateTrack = function(estimate_time) {
                              jsonResponse.planes.forEach(element => {
                                 results.push(new google.maps.LatLng(element.latitude, element.longitude));
                             });
-                            console.log(pointer + "=>"+jsonResponse.previousLink)
                             if (pointer === jsonResponse.previousLink)
                             {
                                 done = true;

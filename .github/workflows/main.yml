@@ -37,12 +37,12 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{secrets.DOCKER_HOST}}/plane-viewer
+            ${{secrets.DOCKER_HOST}}/interplane-viewer
   deploy:
     needs: build
     runs-on: self-hosted
     env:
-     TAG: plane-viewer
+     TAG: interplane-viewer
     steps:
      - name: SSH Command
        uses: nekiro/ssh-job@v1.0.5

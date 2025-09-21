@@ -62,6 +62,7 @@ function PlaneObject(icao) {
 // Appends data to the running track so we can get a visual tail on the plane
 // Only useful for a long running browser session.
 PlaneObject.prototype.updateTrack = function(estimate_time) {
+        console.error("Hello?");
     var here = this.position;
     if (!here)
         return;

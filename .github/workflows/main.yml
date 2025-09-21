@@ -46,7 +46,7 @@ jobs:
         name: Run SSH command
         uses: garygrossgarten/github-action-ssh@v0.5.0
         with:
-          command: sudo docker pull ${{secrets.DOCKER_HOST}}/plane-viewer; sudo docker stop interplane-viewer; sudo docker rm interplane-viewer; sudo docker run  -p 8001:80 --log-driver none --name=interplane-viewer --restart=unless-stopped -d ${{secrets.DOCKER_HOST}}/plane-viewer
+          command: docker pull ${{secrets.DOCKER_HOST}}/plane-viewer; docker stop interplane-viewer; docker rm interplane-viewer; sudo docker run  -p 8001:80 --log-driver none --name=interplane-viewer --restart=unless-stopped -d ${{secrets.DOCKER_HOST}}/plane-viewer
           host: ${{secrets.HOST}}
           user: ${{secrets.CENTURION_USERNAME}}
           password: ${{secrets.CENTURION_PASSWORD}}

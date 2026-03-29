@@ -85,7 +85,7 @@ PlaneObject.prototype.updateTrack = function(estimate_time) {
                 try {
                     var done = false
                     do {
-                        var urr = "https://api.centurionx.net/indexer/history?hexValue=" + plane.icao+"&time="+pointer;
+                        var urr = "https://api.centurionx.net/indexer/history?hexValue=" + plane.icao+"&?time="+pointer;
                         const response = await fetch(urr, { cache: 'no-cache' });
                         if (response.ok) {
                             const jsonResponse = await response.json()

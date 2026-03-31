@@ -81,6 +81,7 @@ PlaneObject.prototype.updateTrack = function(estimate_time) {
                 return response.json();
             }).then(async function(data) {
                 var results = [];
+                var spindicator = plane.track;
                 var pointer = data.previousLink;
                 try {
                     var done = false
@@ -88,7 +89,8 @@ PlaneObject.prototype.updateTrack = function(estimate_time) {
                         var urr = "https://api.centurionx.net/indexer/history?hexValue=" + plane.icao+"&time="+pointer;
                         const response = await fetch(urr, { cache: 'no-cache' });
                         if (response.ok) {
-                            plane.track = plane.track + 1;
+                            spindicator = spindicator + 10;
+                            plane.track = spindicator;
                             const jsonResponse = await response.json()
                             done = jsonResponse.planes.length == 0;
                             jsonResponse.planes.reverse();

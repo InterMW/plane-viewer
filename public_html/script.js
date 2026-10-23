@@ -553,7 +553,7 @@ function initialize_map() {
 	}
 
 	//Add User Map layer if requested
-        if (UserMapShow) {
+        if (UserMapShow && false) {
                 UserKML = new google.maps.KmlLayer({
                         url: UserMap,
                         map: GoogleMap,
